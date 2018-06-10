@@ -1,12 +1,8 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom'; 
-import Dashboard from './js/components/Dashboard';
-
-let mainStyle = {
-    padding: '10px'
-}
+import MainPage from './js/components/MainPage';
 
 ReactDOM.render((
-    <Dashboard/>
-), document.getElementById('main'));
+    <MainPage/>
+), document.getElementById('app'));

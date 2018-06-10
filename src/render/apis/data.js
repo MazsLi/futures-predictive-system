@@ -39,7 +39,9 @@ function updateDailyData(sec, callback) {
 
     // 取得 DDE 資料並放入 dataStore 中
     dataStore['FITX_TEST'] = getTestData();
-
+    callback( Object.assign({}, dataStore) );
+    return;
+    
     setInterval( () => {
         
         let data = ApiBackend.readExcel(excelPath);

@@ -56,3 +56,7 @@ DealtForce成交力差指標：利用即時多空單累計成交量的差值，�
 [圖形類型]
 指數走勢圖
 指數K線圖
+
+# 用了哪些Library
+[圖表 - Echarts](http://echarts.baidu.com/option.html#title)  
+[元件設計 - Material-UI](https://github.com/mui-org/material-ui)

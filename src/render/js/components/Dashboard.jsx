@@ -7,19 +7,9 @@ const debug = require('debug')('dashboard');
 
 class Dashboard extends React.PureComponent {
 
-	constructor(props, context) {
-		super(props, context);
-
-		this.state = {
-			columnWidth: 'eight',
-			chartAry: [],
-		}
-
-	}
-
-	componentWillMount = () => {
-		
-		
+	state = {
+		columnWidth: 'eight',
+		chartAry: [],
 	}
 
 	componentDidMount = () => {

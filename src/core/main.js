@@ -63,6 +63,9 @@ app.on( 'ready', () => {
         mode: 'undocked', // right, bottom, undocked, detach
     });
 
+    // 隱藏 MenuBar
+    mainWindow.setMenu(null);
+
 });
 
 // Register protocol (need after app ready)
