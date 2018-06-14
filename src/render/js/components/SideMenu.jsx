@@ -5,6 +5,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
+import { throttle } from 'react-decoration';
 
 class SideMenu extends React.Component {
 
@@ -14,7 +15,8 @@ class SideMenu extends React.Component {
         current: (this.props.items)? this.props.items[0].key: null,
     }
 
-    handleItemClick = (key) => {
+    @throttle(500) // 每500ms只能觸發一次
+    handleItemClick(key) {
         debug('click:' + key);
         this.state.clickEvent(key);
         this.setState({ current: key });

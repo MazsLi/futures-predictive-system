@@ -28,12 +28,7 @@ module.exports = [
                 {
 					test: /\.(js|jsx)?$/,
 					exclude: /(node_modules|bower_components)/,
-					use: {
-						loader: 'babel-loader',
-						options: {
-							presets: [ 'env', 'react', 'stage-0' ]
-						}
-					}
+					loader: 'babel-loader'
 				},
                 {   
                     test: /\.(less|css)?$/, 
@@ -68,12 +63,7 @@ module.exports = [
                 {
 					test: /\.(js)?$/,
 					exclude: /(node_modules|bower_components)/,
-					use: {
-						loader: 'babel-loader',
-						options: {
-							presets: [ 'env', 'stage-0' ]
-						}
-					}
+					loader: 'babel-loader'
 				},
                 {
 					test: /\.json?$/,

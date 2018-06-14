@@ -7,6 +7,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
+import Avatar from '@material-ui/core/Avatar';
 
 // Icon
 import MenuIcon from '@material-ui/icons/Menu';
@@ -19,7 +20,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import SideMenu from './SideMenu';
 import Dashboard from './Dashboard';
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 const styles = theme => ({ // 直接指定 class name 的 style
     root: {
@@ -88,12 +89,14 @@ const styles = theme => ({ // 直接指定 class name 的 style
         position: 'absolute',
         width: '100%',
         height: '100%',
+        background: 'beige',
         zIndex: 0
     },
     activePage: { // 目前 Focus 頁面
         position: 'absolute',
         width: '100%',
         height: '100%',
+        background: 'beige',
         zIndex: 1
     },
 });
@@ -102,9 +105,18 @@ class MainPage extends React.Component {
 
     state = {
         sidemenu_open: false,
-        sidemenu_current: 'dashboard',
-        sidemenu_current_name: 'Dashboard',
-        sidemenu_items: [
+        sidemenu_current: null,
+        sidemenu_current_name: null,
+        sidemenu_items: []
+    }
+
+    componentWillMount = () => {
+        let initData = [
+            {
+                key: 'profile',    
+                name: 'Profile',
+                icon: <Avatar src="assets://mars.png" style={{ left: '-7px', marginRight: 0 }}/>
+            },
             {   
                 key: 'dashboard',    
                 name: 'Dashboard',
@@ -121,10 +133,14 @@ class MainPage extends React.Component {
                 icon: <SettingsIcon/>
             }
         ]
+
+        this.state.sidemenu_items = initData;
+        this.state.sidemenu_current = initData[0].key;
+        this.state.sidemenu_current_name = initData[0].name;
     }
 
     componentDidMount = () => {
-        this.handleSideMenuClick('dashboard');
+        
     }
 
     handleDrawerOpen = () => {
@@ -157,7 +173,7 @@ class MainPage extends React.Component {
         const { sidemenu_open, sidemenu_current, sidemenu_current_name, sidemenu_items } = this.state;
 
         let pages = [];
-        sidemenu_items.map( (item) => {
+        sidemenu_items.map( (item, index) => {
 
             let page;
 
@@ -169,6 +185,7 @@ class MainPage extends React.Component {
 
             pages.push(
                 <Typography 
+                    key={index}
                     className={(sidemenu_current===item.key)?classes.activePage:classes.inactivePage} 
                     component='div'>
                     {page}
@@ -223,10 +240,3 @@ class MainPage extends React.Component {
 }
 
 export default withStyles(styles, { withTheme: true })(MainPage);
-
-{/* <Typography component='div'>
-
-{ ( sidemenu_current==='dashboard' && <Dashboard /> ) }
-{ ( sidemenu_current==='training' && <Dashboard /> ) }
-{ ( sidemenu_current==='tools' && <Dashboard /> ) }
-</Typography> */}

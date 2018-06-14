@@ -50,7 +50,7 @@ DealtForce成交力差指標：利用即時多空單累計成交量的差值，�
 這邊還有一個問題是實作時發現到的，Excel 雖然會更新，但是不會存檔所以這邊在excel內加入了一點VBA，簡單的讓它依照指定時間自動存檔，不然會發生套件抓不到的問題。
 
 # 資料怎麼顯示
-這邊我們用的是 [Echarts](http://echarts.baidu.com/option.html#title) 這個 JS 的 Library。
+這邊我們用的是 [Echarts](http://echarts.baidu.com/option.html#title) 這個 JS 的 Library。  
 儀錶板 - 可以加入各種指數走勢指標圖
 預判模式 - 根據各種指標，直接判斷買賣點
 訓練模式 - 根據各種指標，直接判斷買賣點，並預成交後觀察績效

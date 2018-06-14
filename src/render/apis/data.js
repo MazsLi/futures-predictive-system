@@ -35,7 +35,7 @@ let dataStore = {
 
 function updateDailyData(sec, callback) {
 
-    const excelPath = 'D:/NodeJS/FuturesRedictiveSystem/assets/source.xlsm';
+    const excelPath = 'D:/1NodeJS/FuturesRedictiveSystem/assets/source.xlsm';
 
     // 取得 DDE 資料並放入 dataStore 中
     dataStore['FITX_TEST'] = getTestData();
