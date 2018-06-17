@@ -4,6 +4,28 @@ import Data from '../../apis/data';
 import ChartBase from './ChartBase';
 import ApiBackend from '../../apis/backend';
 const debug = require('debug')('dashboard');
+import { withStyles } from '@material-ui/core/styles';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+
+const styles = theme => ({
+	root: {
+		padding: 10,
+	  	height: '100%',
+	  	justifyContent: 'space-around',
+	  	backgroundColor: theme.palette.background.dark,
+	},
+	gridList: {
+	  	width: '100%',
+	  	height: '100%',
+	},
+	gridListItem: {
+		padding: 10,
+	  },
+	subheader: {
+	  	width: '100%',
+	},
+});
 
 class Dashboard extends React.PureComponent {
 
@@ -54,7 +76,7 @@ class Dashboard extends React.PureComponent {
 		this.setState((prevState, props) => ({
 			chartAry: [
 				<ChartBase chartType="line" chartData={ Immutable.fromJS(chartIndexData) }/>,
-				// <ChartBase chartType="line-area" chartData={ Immutable.fromJS(preSizeDiffData) }/>
+				<ChartBase chartType="line-area" chartData={ Immutable.fromJS(preSizeDiffData) }/>
 			]
 		}))
 
@@ -66,29 +88,25 @@ class Dashboard extends React.PureComponent {
 
 			debug('render...');
 
+			const { classes } = this.props;
 			let contentAry = [];
-			let columnStyle = {
-				padding: 10,
-				height: ApiBackend.window.getWindowHeight()/2 + 'px',
-			}
-			
-			debug('window height:' + columnStyle.height);
 
 			this.state.chartAry.map( (chart, i) => {
 				contentAry.push(
-					<div key={i} style={columnStyle} className={this.state.columnWidth + ' wide column'}>
+					<GridListTile className={classes.gridListItem} key={i} cols={1}>
 						{chart}
-					</div>
+					</GridListTile>
 				)
 			})
 
-			let containerStyle = {
-				padding: 10
-			}
-
 			return (
-				<div style={containerStyle} className='ui grid'>
-					{contentAry}
+				<div className={classes.root}>
+					<GridList 
+						cellHeight={ApiBackend.window.getWindowHeight()/2} 
+						className={classes.gridList} cols={2}>
+						{contentAry}
+					</GridList>
+					
 				</div>
 			)
 		}
@@ -97,4 +115,4 @@ class Dashboard extends React.PureComponent {
 	}
 }
 
-export default Dashboard;
+export default withStyles(styles)(Dashboard);

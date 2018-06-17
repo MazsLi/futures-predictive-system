@@ -83,13 +83,11 @@ const styles = theme => ({ // 直接指定 class name 的 style
     },
     content: {
         flexGrow: 1,
-        backgroundColor: theme.palette.background.default,
     },
     inactivePage: { // 非目前 Focus 頁面
         position: 'absolute',
         width: '100%',
         height: '100%',
-        background: 'beige',
         zIndex: 0
     },
     activePage: { // 目前 Focus 頁面
@@ -166,6 +164,8 @@ class MainPage extends React.Component {
             sidemenu_current: key,
             sidemenu_current_name: currentName
         })
+
+        // $(this.refs.mainpage).find('[active=inactive]').css('display', 'none');
     }
 
     render() {
@@ -229,9 +229,8 @@ class MainPage extends React.Component {
                     <SideMenu items={sidemenu_items} click={this.handleSideMenuClick}/>
                     
                 </Drawer>
-                <main className={classes.content}>
+                <main ref='mainpage' className={classes.content}>
                     <div className={classes.toolbar} />
-                    
                     {pages}
                 </main>
             </div>
